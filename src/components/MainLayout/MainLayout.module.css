@@ -1,0 +1,12 @@
+.main_layout {
+  display: flex;
+  flex-direction: column;
+  /*height: 100vh;*/
+  margin-top: 4em;
+  background-color: var(--color-1);
+  flex: 1;
+}
+
+.main_layout_content {
+  flex: 1;
+}
