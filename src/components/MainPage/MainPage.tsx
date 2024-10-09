@@ -1,31 +1,43 @@
+import { useEffect, useState } from "react"
+import axios from "axios"
 import { MainLayout } from "../MainLayout/MainLayout"
 import { ProductCard } from "../ProductCard/ProductCard"
 import styles from "./MainPage.module.css"
+import { Product } from "../../types/product"
+import config from "../../config/config"
 
 export const MainPage = () => {
+  const [products, setProducts] = useState<Product[]>([])
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(
+          config.backendBaseURL + "/api/products"
+        )
+
+        setProducts(response.data as Product[])
+        console.log(response.data)
+      } catch (error) {
+        console.error("Error fetching products:", error)
+      }
+    }
+    fetchProducts()
+  }, [])
+
   return (
     <MainLayout>
       <div className="container">
         <div className={styles.title}>Productos</div>
         <div className={styles.products_grid}>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              price={product.price}
+            />
+          ))}
         </div>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
         consectetur fermentum nibh ac feugiat. Fusce euismod purus neque, at

@@ -1,0 +1,5 @@
+const config = {
+  backendBaseURL: "http://localhost:3000",
+}
+
+export default config
