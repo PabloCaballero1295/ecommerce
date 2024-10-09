@@ -2,7 +2,6 @@
   /*margin-top: 2em;*/
   padding-top: 3em;
   padding-bottom: 3em;
-  color: var(--color-4);
   background-color: black;
   color: rgba(255, 255, 255, 0.6);
 }
@@ -13,9 +12,7 @@
 }
 
 .links_title {
-  color: var(--color-1);
   margin-bottom: 2em;
-  font-family: "Tungsten-bold";
   font-size: 1.5em;
   width: fit-content;
   margin-left: auto;
@@ -28,7 +25,6 @@
 }
 .link_item {
   cursor: pointer;
-  text-shadow: 0 0 10px var(--color-1);
 }
 
 .link_item:hover {

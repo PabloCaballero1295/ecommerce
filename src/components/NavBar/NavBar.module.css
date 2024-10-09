@@ -52,6 +52,30 @@
   cursor: pointer;
 }
 
+.search_wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 2em;
+  padding: 0.25em 0.5em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.search_input {
+  background-color: white;
+  border: none;
+}
+
+.search_wrapper:hover {
+  border: 1px solid white;
+}
+
+input:focus {
+  outline: none;
+}
+
 @media (max-width: 1024px) {
   .navbar_content {
     margin: 0 1em;

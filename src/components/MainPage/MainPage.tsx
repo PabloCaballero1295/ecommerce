@@ -1,9 +1,32 @@
 import { MainLayout } from "../MainLayout/MainLayout"
+import { ProductCard } from "../ProductCard/ProductCard"
+import styles from "./MainPage.module.css"
 
 export const MainPage = () => {
   return (
     <MainLayout>
       <div className="container">
+        <div className={styles.title}>Productos</div>
+        <div className={styles.products_grid}>
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+        </div>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
         consectetur fermentum nibh ac feugiat. Fusce euismod purus neque, at
         volutpat nibh molestie et. In sit amet risus blandit, feugiat est non,

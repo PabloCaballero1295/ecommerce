@@ -2,6 +2,7 @@ import { NavBarButton } from "../NavBarButton/NavBarButton"
 import styles from "./NavBar.module.css"
 import { DropdownMenu } from "../DropdownMenu/DropdownMenu"
 import { Link } from "react-router-dom"
+import SearchIcon from "@mui/icons-material/Search"
 
 export const NavBar = () => {
   return (
@@ -11,6 +12,13 @@ export const NavBar = () => {
           <Link to="/" className={styles.web_logo}>
             <div className={styles.web_name}>Ecommerce</div>
           </Link>
+        </div>
+        <div className={styles.search_wrapper}>
+          <SearchIcon sx={{ color: "black" }} className={styles.search_icon} />
+          <input
+            className={styles.search_input}
+            placeholder="Buscar..."
+          ></input>
         </div>
 
         <div className={styles.navbar_right_content}>

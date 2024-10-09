@@ -1,0 +1,12 @@
+.title {
+  font-size: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.products_grid {
+  display: grid;
+  /*gap: 2em;*/
+  width: 100%;
+  grid-template-columns: repeat(6, minmax(0px, 1fr));
+}

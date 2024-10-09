@@ -1,0 +1,35 @@
+.wrapper {
+  padding: 1em;
+  width: 10em;
+  margin: auto;
+  cursor: pointer;
+  transition: 0.15s ease-in;
+  border-radius: 1em;
+}
+
+.wrapper:hover {
+  box-shadow: 0 0 10px black;
+  transition: 0.15s ease-in;
+}
+
+.image {
+  object-fit: cover;
+  width: 100%;
+  margin: auto;
+  aspect-ratio: 1/1;
+  border-radius: 0.75em;
+}
+
+.name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 1.1em;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  white-space: nowrap;
+}
+
+.price {
+  font-size: 1.4em;
+  font-weight: bold;
+}
