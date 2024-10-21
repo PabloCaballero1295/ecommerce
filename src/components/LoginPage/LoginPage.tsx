@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "@firebase/auth"
 
 import { useEffect, useState } from "react"
 import { auth } from "../../firebaseConfig"
+import { Link } from "react-router-dom"
 
 export const LoginPage = () => {
   const [email, setEmail] = useState("")
@@ -11,7 +12,7 @@ export const LoginPage = () => {
 
   const [disabled, setDisabled] = useState(false)
 
-  const Login = () => {
+  const login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user
@@ -51,14 +52,14 @@ export const LoginPage = () => {
             ></input>
             <button
               className={styles.login_button}
-              onClick={Login}
+              onClick={login}
               disabled={disabled}
             >
               Login
             </button>
           </div>
           <div className={styles.register_text}>
-            ¿No tienes cuenta? Regístrate aquí.
+            ¿No tienes cuenta? Regístrate <Link to="/signup"> aquí.</Link>
           </div>
         </div>
       </div>
