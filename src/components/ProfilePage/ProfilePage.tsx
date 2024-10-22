@@ -1,9 +1,9 @@
-import { MainLayout } from "../MainLayout/MainLayout"
 import { getAuth, onAuthStateChanged, User } from "firebase/auth"
 import axios from "axios"
 import config from "../../config/config"
 import { useEffect, useState } from "react"
 import styles from "./ProfilePage.module.css"
+import { Loading } from "../Loading/Loading"
 
 interface UserData {
   id: string
@@ -13,12 +13,15 @@ interface UserData {
 const auth = getAuth()
 
 export const ProfilePage = () => {
+  const [loading, setLoading] = useState(false)
   const [userData, setUserData] = useState<UserData>({ id: "", email: "" })
 
   useEffect(() => {
+    setLoading(true)
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         fetchData(currentUser)
+        setLoading(false)
       }
     })
     return () => unsubscribe()
@@ -37,12 +40,16 @@ export const ProfilePage = () => {
   }
 
   return (
-    <MainLayout>
-      <div className="container">
-        <div className={styles.title}>Perfil</div>
-        <div>id: {userData.id}</div>
-        <div>email: {userData.email}</div>
-      </div>
-    </MainLayout>
+    <div className="container">
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className={styles.title}>Perfil</div>
+          <div>id: {userData.id}</div>
+          <div>email: {userData.email}</div>
+        </>
+      )}
+    </div>
   )
 }

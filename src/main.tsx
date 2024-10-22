@@ -12,7 +12,11 @@ import { MainLayout } from "./components/MainLayout/MainLayout.tsx"
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainPage />,
+    element: (
+      <MainLayout>
+        <MainPage />
+      </MainLayout>
+    ),
   },
   {
     path: "/login",
@@ -24,7 +28,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <ProfilePage />,
+    element: (
+      <MainLayout>
+        <ProfilePage />
+      </MainLayout>
+    ),
   },
   {
     path: "/product/:id",

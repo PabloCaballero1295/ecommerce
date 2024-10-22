@@ -5,9 +5,12 @@ import axios from "axios"
 import { Product } from "../../types/product"
 import styles from "./ProductPage.module.css"
 import { priceDisplay } from "../../utils/utils"
+import { Loading } from "../Loading/Loading"
 
 export const ProductPage = () => {
   const { id } = useParams()
+
+  const [loading, setLoading] = useState(false)
 
   const [productData, setProductData] = useState<Product>({
     id: "",
@@ -17,7 +20,9 @@ export const ProductPage = () => {
 
   useEffect(() => {
     if (id) {
+      setLoading(true)
       fetchData(id)
+      setLoading(false)
     }
   }, [id])
 
@@ -35,13 +40,19 @@ export const ProductPage = () => {
 
   return (
     <div className="container">
-      <div className={styles.title}>PRODUCT</div>
-      <img
-        className={styles.image}
-        src="https://www.uvy.edu.mx/wp-content/uploads/2020/04/MARIO.png"
-      />
-      <div>{productData.name}</div>
-      <div>{priceDisplay(productData.price)} €</div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className={styles.title}>PRODUCT</div>
+          <img
+            className={styles.image}
+            src="https://www.uvy.edu.mx/wp-content/uploads/2020/04/MARIO.png"
+          />
+          <div>{productData.name}</div>
+          <div>{priceDisplay(productData.price)} €</div>
+        </>
+      )}
     </div>
   )
 }
