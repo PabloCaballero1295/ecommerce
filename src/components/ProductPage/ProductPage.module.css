@@ -1,0 +1,7 @@
+.image {
+  object-fit: cover;
+  width: 8em;
+  margin: auto;
+  aspect-ratio: 1/1;
+  border-radius: 0.75em;
+}

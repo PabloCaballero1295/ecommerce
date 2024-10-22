@@ -6,6 +6,8 @@ import { MainPage } from "./components/MainPage/MainPage.tsx"
 import { LoginPage } from "./components/LoginPage/LoginPage.tsx"
 import { SignUpPage } from "./components/SignUpPage/SignUpPage.tsx"
 import { ProfilePage } from "./components/ProfilePage/ProfilePage.tsx"
+import { ProductPage } from "./components/ProductPage/ProductPage.tsx"
+import { MainLayout } from "./components/MainLayout/MainLayout.tsx"
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <ProfilePage />,
+  },
+  {
+    path: "/product/:id",
+    element: (
+      <MainLayout>
+        <ProductPage />
+      </MainLayout>
+    ),
   },
 ])
 

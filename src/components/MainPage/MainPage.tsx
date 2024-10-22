@@ -12,9 +12,7 @@ export const MainPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(
-          config.backendBaseURL + "/api/products"
-        )
+        const response = await axios.get(config.backendBaseURL + "/products")
 
         setProducts(response.data as Product[])
         console.log(response.data)
