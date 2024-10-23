@@ -58,9 +58,9 @@
   align-items: center;
   background-color: white;
   border-radius: 2em;
-  padding: 0.25em 0.5em;
-  margin-left: 1em;
-  margin-right: 1em;
+  padding: 0.05em 0.5em;
+  margin-left: 2em;
+  margin-right: 4em;
 }
 
 .search_input {
@@ -69,7 +69,7 @@
 }
 
 .search_wrapper:hover {
-  border: 1px solid white;
+  outline: 1px solid white;
 }
 
 input:focus {

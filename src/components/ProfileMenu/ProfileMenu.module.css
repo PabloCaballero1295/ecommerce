@@ -1,0 +1,23 @@
+.menu_button {
+  cursor: pointer;
+  padding: 1.75em 1em;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.menu_button.active {
+  cursor: pointer;
+  padding: 1.75em 1em;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: red;
+}
+
+.menu_button:hover {
+  background-color: red;
+  transition: ease-in 0.1s;
+}

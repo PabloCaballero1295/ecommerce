@@ -22,6 +22,8 @@ export const ProfilePage = () => {
       if (currentUser) {
         fetchData(currentUser)
         setLoading(false)
+      } else {
+        setLoading(false)
       }
     })
     return () => unsubscribe()

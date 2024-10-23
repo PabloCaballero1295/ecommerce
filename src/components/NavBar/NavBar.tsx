@@ -3,6 +3,7 @@ import styles from "./NavBar.module.css"
 import { DropdownMenu } from "../DropdownMenu/DropdownMenu"
 import { Link } from "react-router-dom"
 import SearchIcon from "@mui/icons-material/Search"
+import { ProfileMenu } from "../ProfileMenu/ProfileMenu"
 
 export const NavBar = () => {
   return (
@@ -22,7 +23,8 @@ export const NavBar = () => {
         </div>
 
         <div className={styles.navbar_right_content}>
-          <NavBarButton text="Perfil" to="/profile" />
+          {/*<NavBarButton text="Perfil" to="/profile" />*/}
+          <ProfileMenu />
           <NavBarButton text="Carrito" to="/cart" />
         </div>
 

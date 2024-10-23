@@ -4,21 +4,36 @@ import { signInWithEmailAndPassword } from "@firebase/auth"
 
 import { useEffect, useState } from "react"
 import { auth } from "../../firebaseConfig"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { Modal } from "@mui/material"
 
 export const LoginPage = () => {
+  const navigate = useNavigate()
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
   const [disabled, setDisabled] = useState(false)
 
   const login = () => {
+    setErrorMessage("")
+    handleOpen()
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user
         console.log("Usuario autenticado:", user)
+        localStorage.setItem("userId", user.uid)
+        navigate("/")
       })
       .catch((error) => {
+        setErrorMessage(
+          "Ha ocurrido un error. Comprueba que los datos introducidos son correctos."
+        )
         console.error("Error en la autenticación:", error)
       })
   }
@@ -63,6 +78,11 @@ export const LoginPage = () => {
           </div>
         </div>
       </div>
+      <Modal open={open} onClose={handleClose}>
+        <div className={styles.modal_wrapper}>
+          <div>{errorMessage ? errorMessage : "Cargando"}</div>
+        </div>
+      </Modal>
     </div>
   )
 }
