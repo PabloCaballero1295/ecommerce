@@ -16,6 +16,7 @@ export const ProductPage = () => {
     id: "",
     name: "",
     price: 0,
+    description: "",
   })
 
   useEffect(() => {
@@ -44,13 +45,23 @@ export const ProductPage = () => {
         <Loading />
       ) : (
         <>
-          <div className={styles.title}>PRODUCT</div>
-          <img
-            className={styles.image}
-            src="https://www.uvy.edu.mx/wp-content/uploads/2020/04/MARIO.png"
-          />
-          <div>{productData.name}</div>
-          <div>{priceDisplay(productData.price)} €</div>
+          <div className={styles.product_row}>
+            <div className={styles.left_column}>
+              <img
+                className={styles.image}
+                src="https://www.uvy.edu.mx/wp-content/uploads/2020/04/MARIO.png"
+              />
+            </div>
+            <div className={styles.right_column}>
+              <div className={styles.product_name}>{productData.name}</div>
+              <div className={styles.product_price}>
+                {priceDisplay(productData.price)} €
+              </div>
+              <button className={styles.add_to_cart}>Agregar al carrito</button>
+            </div>
+          </div>
+          <div className={styles.description_title}>Descrición</div>
+          <div className={styles.description}>{productData.description}</div>
         </>
       )}
     </div>
