@@ -8,6 +8,7 @@ import { SignUpPage } from "./components/SignUpPage/SignUpPage.tsx"
 import { ProfilePage } from "./components/ProfilePage/ProfilePage.tsx"
 import { ProductPage } from "./components/ProductPage/ProductPage.tsx"
 import { MainLayout } from "./components/MainLayout/MainLayout.tsx"
+import { CreateProduct } from "./components/CreateProduct/CreateProduct.tsx"
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,14 @@ const router = createBrowserRouter([
     element: (
       <MainLayout>
         <ProductPage />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/create-product",
+    element: (
+      <MainLayout>
+        <CreateProduct />
       </MainLayout>
     ),
   },

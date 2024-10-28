@@ -28,6 +28,20 @@ export const LoginPage = () => {
         const user = userCredential.user
         console.log("Usuario autenticado:", user)
         localStorage.setItem("userId", user.uid)
+
+        //Check if the user has admin credentials
+        userCredential.user
+          .getIdTokenResult()
+          .then((idTokenResult) => {
+            if (idTokenResult.claims.admin) {
+              localStorage.setItem("admin", "true")
+            } else {
+              localStorage.setItem("admin", "false")
+            }
+          })
+          .catch((error) => {
+            console.log(error)
+          })
         navigate("/")
       })
       .catch((error) => {

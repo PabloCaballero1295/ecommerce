@@ -1,7 +1,7 @@
 import MenuItem from "@mui/material/MenuItem"
 import Menu from "@mui/material/Menu"
 import { useRef, useState, MouseEvent } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { signOut } from "@firebase/auth"
 import { auth } from "../../firebaseConfig"
 import styles from "./ProfileMenu.module.css"
@@ -18,6 +18,7 @@ export const ProfileMenu = () => {
   let userId = localStorage.getItem("userId") as string
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   const handleProfileButton = () => {
     handleClose()
@@ -27,11 +28,18 @@ export const ProfileMenu = () => {
   const handleLogoutButton = () => {
     handleClose()
     localStorage.setItem("userId", "")
+    localStorage.setItem("admin", "false")
     userId = ""
 
     signOut(auth)
       .then(() => {
         console.log("Succesfull logut")
+
+        if (location.pathname == "/") {
+          window.location.reload()
+        } else {
+          navigate("/")
+        }
       })
       .catch((error) => {
         console.log(error)

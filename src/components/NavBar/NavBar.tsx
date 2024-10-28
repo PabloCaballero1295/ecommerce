@@ -24,6 +24,9 @@ export const NavBar = () => {
 
         <div className={styles.navbar_right_content}>
           {/*<NavBarButton text="Perfil" to="/profile" />*/}
+          {localStorage.getItem("admin") == "true" ? (
+            <NavBarButton text="Crear producto" to="/create-product" />
+          ) : null}
           <ProfileMenu />
           <NavBarButton text="Carrito" to="/cart" />
         </div>
