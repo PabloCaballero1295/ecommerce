@@ -60,10 +60,17 @@ export const LoginPage = () => {
     }
   }, [email, password])
 
+  const goToHome = () => {
+    navigate("/")
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <div>
+          <div className={styles.logo} onClick={goToHome}>
+            Ecommerce
+          </div>
           <div className={styles.title}>Login</div>
           <div className={styles.form_wrapper}>
             <div className={styles.input_title}>Email</div>

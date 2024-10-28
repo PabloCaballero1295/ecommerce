@@ -4,6 +4,13 @@
   margin: auto;
 }
 
+.logo {
+  cursor: pointer;
+  font-size: 3em;
+  width: fit-content;
+  margin: 1em auto;
+}
+
 .content {
   padding: 3em 1em;
   box-shadow: 0 0 10px black;

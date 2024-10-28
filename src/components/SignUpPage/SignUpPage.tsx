@@ -1,7 +1,7 @@
 import styles from "./SignUpPage.module.css"
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import config from "../../config/config"
 
 export const SignUpPage = () => {
@@ -12,6 +12,8 @@ export const SignUpPage = () => {
   const [passwordError, setPasswordError] = useState("")
   const [passwordIsCorrect, setPasswordIsCorrect] = useState(false)
   const [disabled, setDisabled] = useState(false)
+
+  const navigate = useNavigate()
 
   const createUser = async (email: string, password: string): Promise<void> => {
     try {
@@ -65,6 +67,10 @@ export const SignUpPage = () => {
     }
   }
 
+  const goToHome = () => {
+    navigate("/")
+  }
+
   useEffect(() => {
     if (emailIsCorrect && passwordIsCorrect) {
       setDisabled(false)
@@ -77,6 +83,9 @@ export const SignUpPage = () => {
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <div>
+          <div className={styles.logo} onClick={goToHome}>
+            Ecommerce
+          </div>
           <div className={styles.title}>Registrarse</div>
           <div className={styles.form_wrapper}>
             <div className={styles.input_title}>Email</div>
