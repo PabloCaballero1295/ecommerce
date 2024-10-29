@@ -9,6 +9,9 @@ import { ProfilePage } from "./components/ProfilePage/ProfilePage.tsx"
 import { ProductPage } from "./components/ProductPage/ProductPage.tsx"
 import { MainLayout } from "./components/MainLayout/MainLayout.tsx"
 import { CreateProduct } from "./components/CreateProduct/CreateProduct.tsx"
+import { AuthenticatedRoute } from "./components/ProtectedRoutes/AuthenticatedRoute.tsx"
+import { AdminRoute } from "./components/ProtectedRoutes/AdminRoute.tsx"
+import { UnAuthenticatedRoute } from "./components/ProtectedRoutes/UnAuthenticatedRoute.tsx"
 
 const router = createBrowserRouter([
   {
@@ -20,22 +23,6 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/signup",
-    element: <SignUpPage />,
-  },
-  {
-    path: "/profile",
-    element: (
-      <MainLayout>
-        <ProfilePage />
-      </MainLayout>
-    ),
-  },
-  {
     path: "/product/:id",
     element: (
       <MainLayout>
@@ -43,13 +30,47 @@ const router = createBrowserRouter([
       </MainLayout>
     ),
   },
+  /*Routes only Accesible without login*/
   {
-    path: "/create-product",
-    element: (
-      <MainLayout>
-        <CreateProduct />
-      </MainLayout>
-    ),
+    element: <UnAuthenticatedRoute />,
+    children: [
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/signup",
+        element: <SignUpPage />,
+      },
+    ],
+  },
+  /*Routes only Accesible for logged users*/
+  {
+    element: <AuthenticatedRoute />,
+    children: [
+      {
+        path: "/profile",
+        element: (
+          <MainLayout>
+            <ProfilePage />
+          </MainLayout>
+        ),
+      },
+    ],
+  },
+  /*Routes only Accesible for admin users*/
+  {
+    element: <AdminRoute />,
+    children: [
+      {
+        path: "/create-product",
+        element: (
+          <MainLayout>
+            <CreateProduct />
+          </MainLayout>
+        ),
+      },
+    ],
   },
 ])
 
