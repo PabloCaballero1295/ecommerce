@@ -7,9 +7,13 @@ import styles from "./ProductPage.module.css"
 import { priceDisplay } from "../../utils/utils"
 import { Loading } from "../Loading/Loading"
 
+import { addProduct } from "../../redux/cartSlice"
+import { useAppDispatch } from "../../redux/hooks"
+
 export const ProductPage = () => {
   const { id } = useParams()
 
+  const dispatch = useAppDispatch()
   const [loading, setLoading] = useState(false)
 
   const [productData, setProductData] = useState<Product>({
@@ -39,6 +43,10 @@ export const ProductPage = () => {
     }
   }
 
+  const addToCart = () => {
+    dispatch(addProduct(productData))
+  }
+
   return (
     <div className="container">
       {loading ? (
@@ -57,7 +65,9 @@ export const ProductPage = () => {
               <div className={styles.product_price}>
                 {priceDisplay(productData.price)} €
               </div>
-              <button className={styles.add_to_cart}>Agregar al carrito</button>
+              <button className={styles.add_to_cart} onClick={addToCart}>
+                Agregar al carrito
+              </button>
             </div>
           </div>
           <div className={styles.description_title}>Descrición</div>

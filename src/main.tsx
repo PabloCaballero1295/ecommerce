@@ -13,6 +13,10 @@ import { AuthenticatedRoute } from "./components/ProtectedRoutes/AuthenticatedRo
 import { AdminRoute } from "./components/ProtectedRoutes/AdminRoute.tsx"
 import { UnAuthenticatedRoute } from "./components/ProtectedRoutes/UnAuthenticatedRoute.tsx"
 
+import { Provider } from "react-redux"
+import { store } from "./redux/store.ts"
+import { CartPage } from "./components/CartPage/CartPage.tsx"
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +31,14 @@ const router = createBrowserRouter([
     element: (
       <MainLayout>
         <ProductPage />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/cart",
+    element: (
+      <MainLayout>
+        <CartPage />
       </MainLayout>
     ),
   },
@@ -76,6 +88,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 )
