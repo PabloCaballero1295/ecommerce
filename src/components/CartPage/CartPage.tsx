@@ -105,7 +105,9 @@ export const CartPage = () => {
           </div>
         </>
       ) : (
-        <div>No hay productos en el carrito</div>
+        <div className={styles.empty_cart_message}>
+          No hay productos en el carrito
+        </div>
       )}
       <button
         className={styles.empty_cart_button}

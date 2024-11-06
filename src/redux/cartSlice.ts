@@ -2,17 +2,28 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { ProductItem } from "../types/cartProduct"
 import { CartProduct } from "../types/cartProduct"
 
-interface cartState {
+interface CartData {
   products: CartProduct[]
 }
 
-const initialState: cartState = {
+const initialState: CartData = {
   products: [],
+}
+
+const cartKey = "cart"
+
+const cartLocalStorageData = localStorage.getItem(cartKey)
+
+const saveStateOnLocalStorage = (data: CartData) => {
+  localStorage.setItem(cartKey, JSON.stringify(data))
 }
 
 export const cartSlice = createSlice({
   name: "cart",
-  initialState,
+  initialState:
+    cartLocalStorageData != null
+      ? (JSON.parse(cartLocalStorageData) as CartData)
+      : initialState,
   reducers: {
     addProduct: (state, action: PayloadAction<ProductItem>) => {
       const product = action.payload
@@ -34,6 +45,7 @@ export const cartSlice = createSlice({
       }
 
       state.products = [...array_copy]
+      saveStateOnLocalStorage(state)
     },
     decreaseProduct: (state, action: PayloadAction<ProductItem>) => {
       const product = action.payload
@@ -52,6 +64,7 @@ export const cartSlice = createSlice({
       }
 
       state.products = [...array_copy]
+      saveStateOnLocalStorage(state)
     },
     removeProduct: (state, action: PayloadAction<string>) => {
       const productId = action.payload
@@ -66,10 +79,12 @@ export const cartSlice = createSlice({
       }
 
       state.products = [...array_copy]
+      saveStateOnLocalStorage(state)
     },
     deleteAllProducts: (state) => {
       state.products = []
       console.log("Products removed from cart")
+      saveStateOnLocalStorage(state)
     },
   },
 })
