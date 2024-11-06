@@ -76,6 +76,23 @@ input:focus {
   outline: none;
 }
 
+.cart_nav_wrapper {
+  position: relative;
+}
+
+.cart_number {
+  position: absolute;
+  top: -1em;
+  right: 0;
+  background-color: red;
+  font-size: 0.75em;
+  border-radius: 50%;
+  text-align: center;
+  height: 1em;
+  width: 1em;
+  padding: 0.25em;
+}
+
 @media (max-width: 1024px) {
   .navbar_content {
     margin: 0 1em;

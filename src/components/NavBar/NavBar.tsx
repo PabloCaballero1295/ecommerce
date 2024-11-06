@@ -4,8 +4,11 @@ import { DropdownMenu } from "../DropdownMenu/DropdownMenu"
 import { Link } from "react-router-dom"
 import SearchIcon from "@mui/icons-material/Search"
 import { ProfileMenu } from "../ProfileMenu/ProfileMenu"
+import { useAppSelector } from "../../redux/hooks"
 
 export const NavBar = () => {
+  const cart = useAppSelector((state) => state.cart)
+
   return (
     <div className={styles.navbar}>
       <div className={styles.navbar_content}>
@@ -28,7 +31,12 @@ export const NavBar = () => {
             <NavBarButton text="Crear producto" to="/create-product" />
           ) : null}
           <ProfileMenu />
-          <NavBarButton text="Carrito" to="/cart" />
+          <div className={styles.cart_nav_wrapper}>
+            <NavBarButton text="Carrito" to="/cart" />
+            {cart.products.length > 0 ? (
+              <div className={styles.cart_number}>{cart.products.length}</div>
+            ) : null}
+          </div>
         </div>
 
         <div className={styles.navbar_right_content_mobile}>
