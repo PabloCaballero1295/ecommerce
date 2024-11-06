@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import config from "../../config/config"
 import axios from "axios"
 import { Product } from "../../types/product"
@@ -13,6 +13,7 @@ import { selectProductQuantity } from "../../redux/cartSelectors"
 
 export const ProductPage = () => {
   const { id = "" } = useParams()
+  const navigate = useNavigate()
 
   const cart = useAppSelector((state) => state.cart)
 
@@ -69,6 +70,10 @@ export const ProductPage = () => {
     dispatch(decreaseProduct(productData))
   }
 
+  const goToEditProduct = () => {
+    navigate("/edit-product/" + id)
+  }
+
   return (
     <div className="container">
       {loading ? (
@@ -106,6 +111,14 @@ export const ProductPage = () => {
           </div>
           <div className={styles.description_title}>Descrición</div>
           <div className={styles.description}>{productData.description}</div>
+          {localStorage.getItem("admin") == "true" ? (
+            <button
+              className={styles.edit_product_button}
+              onClick={goToEditProduct}
+            >
+              Editar Producto
+            </button>
+          ) : null}
         </>
       )}
     </div>

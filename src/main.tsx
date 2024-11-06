@@ -16,6 +16,7 @@ import { UnAuthenticatedRoute } from "./components/ProtectedRoutes/UnAuthenticat
 import { Provider } from "react-redux"
 import { store } from "./redux/store.ts"
 import { CartPage } from "./components/CartPage/CartPage.tsx"
+import { EditProduct } from "./components/EditProduct/EditProduct.tsx"
 
 const router = createBrowserRouter([
   {
@@ -83,6 +84,14 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "/edit-product/:id",
+    element: (
+      <MainLayout>
+        <EditProduct />
+      </MainLayout>
+    ),
   },
 ])
 
