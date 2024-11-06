@@ -7,14 +7,32 @@ import styles from "./ProductPage.module.css"
 import { priceDisplay } from "../../utils/utils"
 import { Loading } from "../Loading/Loading"
 
-import { addProduct } from "../../redux/cartSlice"
-import { useAppDispatch } from "../../redux/hooks"
+import { addProduct, decreaseProduct } from "../../redux/cartSlice"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { selectProductQuantity } from "../../redux/cartSelectors"
 
 export const ProductPage = () => {
-  const { id } = useParams()
+  const { id = "" } = useParams()
+
+  const cart = useAppSelector((state) => state.cart)
 
   const dispatch = useAppDispatch()
   const [loading, setLoading] = useState(false)
+
+  const cartProductCount = useAppSelector((state) =>
+    selectProductQuantity(state, id)
+  )
+  const isProductOnCart = () => {
+    const index = cart.products.findIndex(
+      (cartProducts) => cartProducts.id == id
+    )
+
+    if (index != -1) {
+      return true
+    }
+
+    return false
+  }
 
   const [productData, setProductData] = useState<Product>({
     id: "",
@@ -47,6 +65,10 @@ export const ProductPage = () => {
     dispatch(addProduct(productData))
   }
 
+  const decreaseCart = () => {
+    dispatch(decreaseProduct(productData))
+  }
+
   return (
     <div className="container">
       {loading ? (
@@ -65,9 +87,21 @@ export const ProductPage = () => {
               <div className={styles.product_price}>
                 {priceDisplay(productData.price)} €
               </div>
-              <button className={styles.add_to_cart} onClick={addToCart}>
-                Agregar al carrito
-              </button>
+              {isProductOnCart() ? (
+                <div className={styles.cart_buttons_wrapper}>
+                  <button className={styles.cart_button} onClick={decreaseCart}>
+                    -
+                  </button>
+                  <div className={styles.cart_count}>{cartProductCount}</div>
+                  <button className={styles.cart_button} onClick={addToCart}>
+                    +
+                  </button>
+                </div>
+              ) : (
+                <button className={styles.add_to_cart} onClick={addToCart}>
+                  Agregar al carrito
+                </button>
+              )}
             </div>
           </div>
           <div className={styles.description_title}>Descrición</div>

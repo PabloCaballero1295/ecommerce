@@ -7,6 +7,7 @@
 .empty_cart_button {
   font-size: 1.15em;
   background-color: red;
+  color: white;
   outline: none;
   border: none;
   padding: 0.75em 1.5em;
@@ -14,6 +15,7 @@
   cursor: pointer;
   display: block;
   margin: auto;
+  margin-bottom: 3em;
 }
 
 .image {
@@ -32,4 +34,43 @@
 td {
   border: 1px solid black;
   text-align: center;
+}
+
+.cart_price {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.cart_button {
+  background-color: none;
+  outline: none;
+  border: none;
+  padding: 0.75em 1.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  display: block;
+}
+
+.product_count {
+  padding: 0 1em;
+}
+
+.cart_buttons_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove_product_button {
+  background-color: red;
+  color: white;
+  outline: none;
+  border: none;
+  padding: 0.75em 1.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  display: block;
+  margin: auto;
 }

@@ -40,7 +40,7 @@ export const CreateProduct = () => {
 
   return (
     <div className="container">
-      <div className={styles.title}>Create Product</div>
+      <div className={styles.title}>Crear Producto</div>
       <div className={styles.form_wrapper}>
         <div className={styles.input_title}>Nombre</div>
         <input
@@ -55,7 +55,7 @@ export const CreateProduct = () => {
           value={price}
           onChange={(e) => setPrice(Number(e.target.value))}
         ></input>
-        <div className={styles.input_title}>Description</div>
+        <div className={styles.input_title}>Descripción</div>
         <textarea
           className={styles.text_area}
           value={description}
